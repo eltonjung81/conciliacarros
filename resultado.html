@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resultado da Consulta | Concilia Veículos</title>
+  <meta name="description" content="Confira a situação do veículo consultado e entenda como podemos resolver o impasse de transferência para você." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/resultado.css" />
+</head>
+<body class="resultado-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Concilia<strong>Veículos</strong></span>
+        </a>
+      </div>
+      <a href="https://wa.me/5551999906748?text=Olá!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda."
+         class="nav-cta" target="_blank">💬 Falar com Especialista</a>
+    </div>
+  </nav>
+
+  <main class="resultado-main">
+
+    <!-- ESTADO: CARREGANDO -->
+    <div id="state-loading" class="state-screen">
+      <div class="loading-spinner"></div>
+      <h2>Consultando registros públicos...</h2>
+      <p>Buscando informações do veículo de placa <strong id="loading-placa"></strong></p>
+    </div>
+
+    <!-- ESTADO: ERRO (placa inválida) -->
+    <div id="state-error" class="state-screen hidden">
+      <div class="state-icon error-icon">❌</div>
+      <h2>Placa não encontrada</h2>
+      <p>Não localizamos nenhum veículo com essa placa nos registros disponíveis. Verifique e tente novamente.</p>
+      <a href="index.html" class="btn-primary" style="display:inline-flex;margin-top:24px;">← Tentar outra placa</a>
+    </div>
+
+    <!-- ESTADO: RESULTADO -->
+    <div id="state-result" class="hidden">
+
+      <!-- CABEÇALHO DO RESULTADO -->
+      <div class="result-top">
+        <div class="result-top-inner">
+          <div class="result-badge-found">
+            <span>✅</span> Veículo localizado nos registros públicos
+          </div>
+          <h1 class="result-title">Situação do veículo <span class="placa-display" id="result-placa-display"></span></h1>
+        </div>
+      </div>
+
+      <div class="resultado-content">
+
+        <!-- DADOS PÚBLICOS DO VEÍCULO -->
+        <div class="vehicle-card">
+          <div class="vehicle-card-header">
+            <div class="vehicle-brand-logo" id="brand-logo-container" style="display:none;">
+              <img id="brand-logo" src="" alt="Logo Marca" style="height: 40px; width: auto; opacity: 0.8;">
+            </div>
+            <span class="vehicle-card-icon" id="vehicle-icon-default">🚗</span>
+            <div>
+              <h2 id="vehicle-name">—</h2>
+              <p class="vehicle-sub">Dados obtidos dos registros públicos</p>
+            </div>
+          </div>
+          <div class="vehicle-grid">
+            <div class="vehicle-info-item">
+              <span class="vi-label">Placa</span>
+              <span class="vi-value" id="vi-placa">—</span>
+            </div>
+            <div class="vehicle-info-item">
+              <span class="vi-label">Marca / Modelo</span>
+              <span class="vi-value" id="vi-modelo">—</span>
+            </div>
+            <div class="vehicle-info-item">
+              <span class="vi-label">Ano Modelo</span>
+              <span class="vi-value" id="vi-ano">—</span>
+            </div>
+            <div class="vehicle-info-item">
+              <span class="vi-label">Cor</span>
+              <span class="vi-value" id="vi-cor">—</span>
+            </div>
+            <div class="vehicle-info-item">
+              <span class="vi-label">Localização</span>
+              <span class="vi-value" id="vi-local">—</span>
+            </div>
+            <div class="vehicle-info-item">
+              <span class="vi-label">Combustível</span>
+              <span class="vi-value" id="vi-combustivel">—</span>
+            </div>
+            <div class="vehicle-info-item">
+              <span class="vi-label">Cilindrada</span>
+              <span class="vi-value" id="vi-cilindrada">—</span>
+            </div>
+            <div class="vehicle-info-item">
+              <span class="vi-label">Potência</span>
+              <span class="vi-value" id="vi-potencia">—</span>
+            </div>
+            <div class="vehicle-info-item">
+              <span class="vi-label">Tipo</span>
+              <span class="vi-value" id="vi-tipo">—</span>
+            </div>
+            <div class="vehicle-info-item">
+              <span class="vi-label">Chassi</span>
+              <span class="vi-value" id="vi-chassi">—</span>
+            </div>
+            <div class="vehicle-info-item">
+              <span class="vi-label">Motor</span>
+              <span class="vi-value" id="vi-motor">—</span>
+            </div>
+          </div>
+          <div class="vehicle-fipe">
+            <span class="fipe-label">Tabela FIPE</span>
+            <span class="fipe-value" id="vi-fipe">—</span>
+            <span class="fipe-ref" id="vi-fipe-ref"></span>
+          </div>
+        </div>
+
+        <!-- SERVIÇO: EXPLICAÇÃO DO PROCESSO -->
+        <div class="service-card">
+          <div class="service-header">
+            <span class="service-header-icon">🔍</span>
+            <div>
+              <h2>O que fazemos por você</h2>
+              <p>Nossa equipe tentará localizar o proprietário deste veículo</p>
+            </div>
+          </div>
+
+          <div class="probability-bar-wrapper">
+            <div class="prob-label">
+              <span>Probabilidade de localização estimada</span>
+              <strong class="prob-pct">90%+</strong>
+            </div>
+            <div class="prob-bar-bg">
+              <div class="prob-bar-fill" id="prob-bar"></div>
+            </div>
+            <p class="prob-disclaimer">Baseada nos dados disponíveis para esta região e período</p>
+          </div>
+
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="ps-icon">📡</div>
+              <div>
+                <h4>Localização em até 24 horas</h4>
+                <p>Nossa equipe inicia a busca imediatamente. Se tivermos 90%+ de confiança nos dados, você será avisado via WhatsApp ainda hoje.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="ps-icon">📞</div>
+              <div>
+                <h4>Primeiro contato com o proprietário</h4>
+                <p>Entramos em contato com o proprietário de forma profissional e explicamos a situação, apresentando a solução para ambas as partes.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- OPÇÕES DE SERVIÇO -->
+          <h3 class="options-title options-title--highlight">
+            Caso encontrarmos o dono você escolhe se decide regularizar.<br>
+            <span>Estes são os valores que você escolhe para pagar pelos nossos serviços:</span>
+          </h3>
+
+          <div class="options-grid">
+            <div class="option-card option-basic" id="option-card-1">
+              <div class="option-badge">Opção 1</div>
+              <div class="option-icon">📬</div>
+              <h4>Entrega de Contato</h4>
+              <p>Localizamos o proprietário e, com a autorização dele, entregamos o contato direto para você. Você conduz o processo de transferência.</p>
+              <div class="option-price">
+                <span class="option-price-label">Custo do serviço</span>
+                <span class="option-price-value">R$ 79,90</span>
+              </div>
+              <ul class="option-features">
+                <li>✅ Localização do proprietário</li>
+                <li>✅ Contato autorizado entregue</li>
+                <li>✅ Orientação sobre o processo</li>
+                <li>⚠️ Você negocia e assina o ATPV-e</li>
+              </ul>
+            </div>
+
+            <div class="option-card option-premium" id="option-card-2">
+              <div class="option-badge featured-badge">⭐ Mais Escolhido</div>
+              <div class="option-icon">🤝</div>
+              <h4>Solução Completa</h4>
+              <p>Nossa equipe faz toda a intermediação entre as partes — desde a localização até a assinatura do ATPV-e. Você não precisa fazer nada.</p>
+              <div class="option-price">
+                <span class="option-price-label">Custo do serviço</span>
+                <span class="option-price-value gold">R$ 279,00</span>
+                <span class="option-price-note">💡 Pago apenas ao final, após a transferência concluída</span>
+              </div>
+              <ul class="option-features">
+                <li>✅ Tudo da Opção 1</li>
+                <li>✅ Intermediação completa da negociação</li>
+                <li>✅ Orientação Gov.br / ATPV-e</li>
+                <li>✅ Acompanhamento até a conclusão</li>
+                <li>✅ <strong>Sem risco — pague só no final</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- BOTÃO PRINCIPAL -->
+          <button class="btn-regularizar" id="btn-regularizar">
+            🚀 Regularizar Este Veículo
+          </button>
+          <p class="regularizar-hint">Ao clicar, você será direcionado ao formulário de solicitação. Sem compromisso.</p>
+
+        </div>
+
+        <!-- FORMULÁRIO DE SOLICITAÇÃO -->
+        <div class="form-solicitacao hidden" id="form-solicitacao">
+          <div class="form-sol-header">
+            <span>📋</span>
+            <div>
+              <h2>Solicitar Regularização</h2>
+              <p>Preencha os dados abaixo e nossa equipe entrará em contato pelo seu WhatsApp em até 2 horas.</p>
+            </div>
+          </div>
+
+          <form id="lead-form">
+            <div class="form-grid">
+              <div class="fg-field">
+                <label for="f-nome">Seu Nome Completo *</label>
+                <input type="text" id="f-nome" placeholder="João da Silva" required />
+              </div>
+              <div class="fg-field">
+                <label for="f-telefone">Seu WhatsApp *</label>
+                <input type="tel" id="f-telefone" placeholder="(51) 99999-9999" required />
+              </div>
+              <div class="fg-field">
+                <label for="f-placa">Placa do Veículo *</label>
+                <input type="text" id="f-placa" maxlength="7" required readonly style="opacity:0.7;cursor:not-allowed;" />
+              </div>
+              <div class="fg-field">
+                <label for="f-marca">Marca</label>
+                <input type="text" id="f-marca" placeholder="Ex: Volkswagen" />
+              </div>
+              <div class="fg-field">
+                <label for="f-modelo">Modelo</label>
+                <input type="text" id="f-modelo" placeholder="Ex: Gol" />
+              </div>
+              <div class="fg-field">
+                <label for="f-ano">Ano</label>
+                <input type="text" id="f-ano" placeholder="Ex: 2020" maxlength="4" />
+              </div>
+            </div>
+
+            <div class="fg-field" style="margin-top:4px;">
+              <label for="f-opcao">Qual opção de serviço você prefere?</label>
+              <select id="f-opcao">
+                <option value="opcao1">Opção 1 – Entrega de Contato (R$ 79,90)</option>
+                <option value="opcao2" selected>Opção 2 – Solução Completa (R$ 279,00 – pago ao final)</option>
+                <option value="decidir_depois">Decidirei depois (falar com consultor)</option>
+              </select>
+            </div>
+
+            <div class="fg-field" style="margin-top:4px;">
+              <label for="f-situacao">Descreva brevemente a situação (opcional)</label>
+              <textarea id="f-situacao" rows="3" placeholder="Ex: Comprei o carro há 2 anos, o vendedor não atende mais..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-enviar-wpp" id="btn-enviar">
+              💬 Enviar Solicitação via WhatsApp
+            </button>
+            <p class="form-lgpd">🔒 Seus dados são usados exclusivamente para este atendimento e protegidos pela LGPD.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/resultado.js"></script>
+</body>
+</html>

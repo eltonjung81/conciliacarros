@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Admin – Concilia Veículos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span>⚖️</span>
+      <span>Concilia<strong>Veículos</strong></span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" id="nav-leads">📋 Leads</a>
+      <a href="#" class="nav-item" id="nav-stats">📊 Resumo</a>
+      <a href="../index.html" class="nav-item" target="_blank">🌐 Ver Site</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-avatar">CV</div>
+        <div>
+          <p class="user-name">Concilia Veículos</p>
+          <p class="user-role">Administrador</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- HEADER -->
+    <header class="main-header">
+      <div>
+        <h1 class="page-title">Painel de Leads</h1>
+        <p class="page-sub">Gerencie todas as solicitações recebidas</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn-refresh" id="btn-refresh" title="Atualizar">🔄 Atualizar</button>
+        <button class="btn-add" id="btn-add-lead">+ Novo Lead</button>
+      </div>
+    </header>
+
+    <!-- CARDS DE RESUMO -->
+    <div class="summary-cards" id="summary-cards">
+      <div class="summary-card">
+        <div class="summary-icon blue">📥</div>
+        <div>
+          <p class="summary-label">Total de Leads</p>
+          <p class="summary-value" id="stat-total">0</p>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon yellow">💰</div>
+        <div>
+          <p class="summary-label">Aguardando Pagamento</p>
+          <p class="summary-value" id="stat-aguardando">0</p>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon purple">🤝</div>
+        <div>
+          <p class="summary-label">Em Negociação</p>
+          <p class="summary-value" id="stat-negociacao">0</p>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon green">✅</div>
+        <div>
+          <p class="summary-label">Finalizados</p>
+          <p class="summary-value" id="stat-finalizados">0</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="filters-bar">
+      <input type="text" id="search-input" class="search-input" placeholder="🔍 Buscar por placa ou WhatsApp..." />
+      <select id="status-filter" class="filter-select">
+        <option value="">Todos os Status</option>
+        <option value="NOVO">Novo</option>
+        <option value="AGUARDANDO_PAGAMENTO">Aguardando Pagamento</option>
+        <option value="DONO_LOCALIZADO">Dono Localizado</option>
+        <option value="EM_NEGOCIACAO">Em Negociação</option>
+        <option value="FINALIZADO_SUCESSO">Finalizado com Sucesso</option>
+        <option value="REEMBOLSADO">Reembolsado</option>
+      </select>
+      <button class="btn-export" id="btn-export">📥 Exportar CSV</button>
+    </div>
+
+    <!-- TABELA DE LEADS -->
+    <div class="table-wrapper">
+      <table class="leads-table" id="leads-table">
+        <thead>
+          <tr>
+            <th>Placa</th>
+            <th>WhatsApp</th>
+            <th>Status</th>
+            <th>Data</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="leads-tbody">
+          <!-- preenchido via JS -->
+        </tbody>
+      </table>
+      <div class="empty-state hidden" id="empty-state">
+        <p>🔍</p>
+        <h3>Nenhum lead encontrado</h3>
+        <p>Os leads capturados pelo site aparecerão aqui automaticamente.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL: EDITAR LEAD -->
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal" id="modal-lead">
+      <div class="modal-header">
+        <h2 id="modal-title">Detalhes do Lead</h2>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-field">
+          <label>Placa</label>
+          <input type="text" id="modal-placa" class="modal-input" maxlength="7" />
+        </div>
+        <div class="modal-field">
+          <label>WhatsApp</label>
+          <input type="tel" id="modal-whatsapp" class="modal-input" />
+        </div>
+        <div class="modal-field">
+          <label>Nome do Cliente (opcional)</label>
+          <input type="text" id="modal-nome" class="modal-input" placeholder="Ex: João Silva" />
+        </div>
+        <div class="modal-field">
+          <label>Status</label>
+          <select id="modal-status" class="modal-input">
+            <option value="NOVO">Novo</option>
+            <option value="AGUARDANDO_PAGAMENTO">Aguardando Pagamento</option>
+            <option value="DONO_LOCALIZADO">Dono Localizado</option>
+            <option value="EM_NEGOCIACAO">Em Negociação</option>
+            <option value="FINALIZADO_SUCESSO">Finalizado com Sucesso</option>
+            <option value="REEMBOLSADO">Reembolsado</option>
+          </select>
+        </div>
+        <div class="modal-field">
+          <label>Observações</label>
+          <textarea id="modal-obs" class="modal-input modal-textarea" placeholder="Anote aqui o histórico de contato..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-actions-left">
+          <a id="modal-whatsapp-btn" href="#" target="_blank" class="btn-wpp">💬 Abrir WhatsApp</a>
+        </div>
+        <div class="modal-actions-right">
+          <button class="btn-cancel" id="btn-modal-cancel">Cancelar</button>
+          <button class="btn-save" id="btn-modal-save">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

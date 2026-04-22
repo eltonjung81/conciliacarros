@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concilia Veículos | Regularize a Transferência do Seu Veículo</title>
+  <meta name="description" content="Não consegue transferir o carro? Localizamos o antigo proprietário e resolvemos tudo para você. Digite a placa e veja agora." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Concilia<strong>Veículos</strong></span>
+      </div>
+      <a href="https://wa.me/5551999906748?text=Olá!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda."
+         class="nav-cta" target="_blank" id="btn-nav-whatsapp">
+        <span>💬</span> Falar com Especialista
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-container">
+
+      <div class="badge-top animate-fade-up">
+        <span class="badge-dot"></span>
+        Especialistas em Regularização Veicular
+      </div>
+
+      <h1 class="hero-title animate-fade-up delay-1">
+        Carro sem transferência?<br/>
+        <span class="gradient-text">Resolvemos em até 24h.</span>
+      </h1>
+
+      <p class="hero-subtitle animate-fade-up delay-2">
+        Não importa há quanto tempo o veículo está no seu nome ou no de outra pessoa.
+        Nossa equipe localiza o proprietário e resolve tudo para você.
+      </p>
+
+      <!-- CARD DE BUSCA -->
+      <div class="search-card animate-fade-up delay-3">
+        <div class="search-card-header">
+          <span class="search-step-badge">PASSO 1</span>
+          <p class="search-card-title">Consulte gratuitamente a situação do veículo</p>
+        </div>
+
+        <form id="placa-form">
+          <div class="plate-wrapper">
+            <div class="plate-visual">
+              <div class="plate-top-bar">
+                <span class="plate-flag">🇧🇷</span>
+                <span class="plate-country">BRASIL</span>
+              </div>
+              <input
+                type="text"
+                id="placa-input"
+                name="placa"
+                placeholder="ABC-1234"
+                maxlength="8"
+                class="plate-input-main"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn-search" id="btn-consultar">
+            <span id="btn-text">🔍 Consultar Situação do Veículo</span>
+          </button>
+          <p class="search-disclaimer">
+            🔒 Consulta gratuita — usamos apenas dados públicos disponíveis nos sistemas oficiais
+          </p>
+        </form>
+      </div>
+
+      <!-- INDICADORES DE CONFIANÇA -->
+      <div class="trust-row animate-fade-up delay-3">
+        <div class="trust-item">
+          <span class="trust-icon">✅</span>
+          <span>Consulta 100% gratuita</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">⚡</span>
+          <span>Resultado imediato</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">🔒</span>
+          <span>Dados protegidos (LGPD)</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUEM ATENDEMOS -->
+  <section class="audience" id="quem-atendemos">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-tag">Você se encaixa aqui?</div>
+        <h2 class="section-title">Esse serviço é para você que...</h2>
+      </div>
+      <div class="audience-grid audience-grid--single">
+        <div class="audience-card buyer">
+          <div class="audience-icon">🚗</div>
+          <h3>Comprou o carro e não consegue transferir</h3>
+          <ul class="audience-list">
+            <li>🚨 Carro ameaçado de apreensão</li>
+            <li>📄 Não tem o recibo ou DUT assinado</li>
+            <li>☎️ Vendedor sumiu e não atende mais</li>
+            <li>📍 Não sabe onde encontrar o antigo proprietário</li>
+            <li>⏳ Situação parada há meses ou anos sem solução</li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:36px;">
+        <a href="#hero" class="btn-primary btn-large" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'});return false;">
+          Consultar Minha Placa Agora →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="how-it-works" id="como-funciona">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-tag">Processo Transparente</div>
+        <h2 class="section-title">Como funciona na prática</h2>
+        <p class="section-desc">Simples, claro e sem surpresas.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon">🔍</div>
+          <h3>Você consulta a placa</h3>
+          <p>Informe a placa e vemos a situação atual do veículo nos registros públicos.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon">📡</div>
+          <h3>Nossa equipe localiza o dono</h3>
+          <p>Com metodologia própria e fontes exclusivas, buscamos os dados de contato do proprietário.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon">🤝</div>
+          <h3>Intermediamos a negociação</h3>
+          <p>Contatamos o proprietário e propomos a solução de forma profissional para ambas as partes.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <div class="step-icon">📝</div>
+          <h3>Transferência concluída</h3>
+          <p>Orientamos a assinatura digital via Gov.br ou geração do ATPV-e. Rápido e sem sair de casa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="testimonials" id="depoimentos">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-tag">Depoimentos</div>
+        <h2 class="section-title">Quem já resolveu com a gente</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p>"Comprei um carro há 2 anos e nunca consegui transferir. Em 4 dias resolveram tudo. Inacreditável!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MR</div>
+            <div><strong>Marcos R.</strong><span>Porto Alegre, RS</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p>"Vendi meu carro há 3 anos e as multas continuavam chegando. Em uma semana o carro foi transferido. Que alívio!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AL</div>
+            <div><strong>Ana L.</strong><span>Canoas, RS</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p>"Pensei que fosse ter que ir a juízo. A Concilia explicou a saída rápida e resolveu tudo. Vale cada centavo!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RF</div>
+            <div><strong>Roberto F.</strong><span>Gramado, RS</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-tag">Dúvidas Frequentes</div>
+        <h2 class="section-title">Perguntas que recebemos todo dia</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" id="faq-q1">É legal buscar os dados de outra pessoa? <span class="faq-arrow">+</span></button>
+          <div class="faq-answer" id="faq-a1">Sim. Atuamos com base no legítimo interesse previsto na LGPD (Lei 13.709/2018), Art. 7º, inciso IX. A busca é feita para resolver uma demanda jurídica legítima — a regularização de um contrato de compra e venda de veículo.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" id="faq-q2">E se o antigo dono não quiser cooperar? <span class="faq-arrow">+</span></button>
+          <div class="faq-answer" id="faq-a2">Na maioria dos casos o proprietário também quer resolver, pois multas e IPVA continuam chegando no nome dele. Se houver resistência, nossa equipe intermedia a negociação completa entre as partes até chegar num acordo.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" id="faq-q3">Quanto tempo leva? <span class="faq-arrow">+</span></button>
+          <div class="faq-answer" id="faq-a3">A localização ocorre em até 24 horas. A intermediação e conclusão da transferência costuma levar de 3 a 7 dias úteis, dependendo da disponibilidade do proprietário.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" id="faq-q4">Como funciona a transferência digital? <span class="faq-arrow">+</span></button>
+          <div class="faq-answer" id="faq-a4">Utilizamos a assinatura eletrônica do Gov.br (nível ouro ou prata) para assinar o ATPV-e (Autorização para Transferência de Propriedade de Veículo eletrônico). O processo é 100% online e tem validade jurídica equivalente à assinatura física.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" id="faq-q5">Vocês têm garantia? <span class="faq-arrow">+</span></button>
+          <div class="faq-answer" id="faq-a5">Sim. A taxa de intermediação completa só é paga ao final, após a transferência concluída. Você não assume nenhum risco antecipado.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final" id="cta-final">
+    <div class="cta-glow"></div>
+    <div class="section-container" style="text-align:center;">
+      <h2 class="cta-title">Pronto para resolver de uma vez por todas?</h2>
+      <p class="cta-desc">Não deixe a situação se complicar mais. Cada dia sem transferência pode gerar novas multas.</p>
+      <div class="cta-buttons">
+        <a href="#hero" class="btn-primary btn-large" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'});return false;">
+          🔍 Consultar Placa Gratuitamente
+        </a>
+        <a href="https://wa.me/5551999906748?text=Olá!%20Preciso%20resolver%20uma%20transferência%20de%20veículo."
+           class="btn-whatsapp btn-large" target="_blank" id="btn-cta-whatsapp">
+          💬 Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Concilia<strong>Veículos</strong></span>
+        </div>
+        <p>Intermediação especializada em transferência veicular. Solução rápida, segura e digital.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Links Rápidos</h4>
+        <a href="#como-funciona">Como Funciona</a>
+        <a href="#faq">Perguntas Frequentes</a>
+        <a href="admin/dashboard.html" style="opacity:0.3;font-size:11px;">Área Administrativa</a>
+      </div>
+      <div class="footer-contact">
+        <h4>Contato</h4>
+        <p>📱 (51) 99990-6748</p>
+        <a href="https://wa.me/5551999906748" target="_blank" class="btn-footer-whatsapp">Abrir WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Concilia Veículos. Todos os direitos reservados.</p>
+      <p class="footer-legal">Este serviço não é vinculado ao Governo Federal, DETRAN ou qualquer órgão público. Somos uma empresa privada de intermediação.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

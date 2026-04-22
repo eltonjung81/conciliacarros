@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.env
+
+# Banco de Dados Local (IMPORTANTE: não subir dados de clientes)
+leads.db
+
+# Logs
+*.log
+
+# Pasta do Gemini/Antigravity
+.gemini/
+.gemini_data/
