@@ -43,7 +43,11 @@ async function consultarVeiculo(placa) {
 
   try {
     console.log(`[DEBUG] Buscando dados em: ${API_BASE}/api/consulta/${placa}`);
-    const response = await fetch(`${API_BASE}/api/consulta/${placa}`);
+    const response = await fetch(`${API_BASE}/api/consulta/${placa}`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'true'
+      }
+    });
     
     if (!response.ok) {
       const errData = await response.json().catch(() => ({}));
@@ -229,7 +233,10 @@ _Lead capturado via site Concilia Veículos_`;
   // Envia para o banco de dados via API
   fetch(`${API_BASE}/api/leads`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      'ngrok-skip-browser-warning': 'true'
+    },
     body: JSON.stringify({ nome, whatsapp: tel, placa: pl, marca, modelo, ano, opcao, situacao })
   }).then(r => r.json())
     .then(res => console.log("[DEBUG] Lead salvo no banco:", res))
