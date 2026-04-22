@@ -10,7 +10,7 @@ const loadingEl = document.getElementById('loading-placa');
 if (loadingEl) loadingEl.textContent = placaOriginal;
 
 // ===== CONTADOR REGRESSIVO =====
-let tempoRestante = 50;
+let tempoRestante = 70;
 const timerEl = document.getElementById('countdown-timer');
 const timerInterval = setInterval(() => {
   if (tempoRestante > 0) {
