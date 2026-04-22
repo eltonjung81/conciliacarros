@@ -9,8 +9,25 @@ const placaOriginal = (params.get('placa') || '').toUpperCase().replace(/[^A-Z0-
 const loadingEl = document.getElementById('loading-placa');
 if (loadingEl) loadingEl.textContent = placaOriginal;
 
+// ===== CONTADOR REGRESSIVO =====
+let tempoRestante = 50;
+const timerEl = document.getElementById('countdown-timer');
+const timerInterval = setInterval(() => {
+  if (tempoRestante > 0) {
+    tempoRestante--;
+    if (timerEl) timerEl.textContent = tempoRestante + 's';
+  } else {
+    clearInterval(timerInterval);
+  }
+}, 1000);
+
+function pararTimer() {
+  clearInterval(timerInterval);
+}
+
 // ===== VALIDAÇÃO BÁSICA =====
 if (!placaOriginal || (!/^[A-Z]{3}[0-9]{4}$/.test(placaOriginal) && !/^[A-Z]{3}[0-9][A-Z][0-9]{2}$/.test(placaOriginal))) {
+  pararTimer();
   ocultarLoading();
   document.getElementById('state-error')?.classList.remove('hidden');
 }
@@ -21,6 +38,9 @@ function ocultarLoading() {
 
 // ===== CONSULTA REAL NO BACKEND PYTHON =====
 async function consultarVeiculo(placa) {
+  // Google Analytics: Busca iniciada
+  gtag('event', 'search_started', { 'placa': placa });
+
   try {
     console.log(`[DEBUG] Buscando dados em: ${API_BASE}/api/consulta/${placa}`);
     const response = await fetch(`${API_BASE}/api/consulta/${placa}`);
@@ -33,6 +53,9 @@ async function consultarVeiculo(placa) {
     const data = await response.json();
     console.log("[DEBUG] Resposta bruta da API:", data);
     
+    // Google Analytics: Resultado encontrado
+    gtag('event', 'search_success', { 'placa': placa, 'veiculo': data.veiculo || '—' });
+
     const det = data.detalhes || {};
     const fipe = data.tabela_fipe || {};
     
@@ -68,6 +91,7 @@ async function consultarVeiculo(placa) {
 function exibirResultado(dados) {
   console.log("[DEBUG] Iniciando preenchimento da tela com:", dados);
   
+  pararTimer();
   ocultarLoading();
   const resultState = document.getElementById('state-result');
   if (resultState) resultState.classList.remove('hidden');
@@ -164,6 +188,12 @@ document.getElementById('lead-form')?.addEventListener('submit', (e) => {
     alert('Por favor, preencha seu nome e WhatsApp.');
     return;
   }
+
+  // Google Analytics: Lead Gerado
+  gtag('event', 'generate_lead', {
+    'placa': pl,
+    'servico': opcao
+  });
 
   let opcaoTexto = '';
   if (opcao === 'opcao1') {
